@@ -1,0 +1,31 @@
+"""
+Bazel Modules
+"""
+
+# module
+
+module(
+    name = "spm_example",
+    version = "0.0.0",
+)
+
+# swiftpkg
+
+swiftpkg_extension = use_extension(
+    "//extensions/swiftpkg_extension:swiftpkg_extension.bzl",
+    "swiftpkg_extension",
+)
+use_repo(
+    swiftpkg_extension,
+    "swiftpkg",
+)
+
+swiftpkg_dependencies_extension = use_extension(
+    "//extensions/swiftpkg_dependencies_extension:swiftpkg_dependencies_extension.bzl",
+    "swiftpkg_dependencies_extension",
+)
+swiftpkg_dependencies_extension.index()
+use_repo(
+    swiftpkg_dependencies_extension,
+    "swiftpkg_devicekit",
+)
