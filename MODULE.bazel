@@ -28,4 +28,5 @@ swiftpkg_dependencies_extension.index()
 use_repo(
     swiftpkg_dependencies_extension,
     "swiftpkg_devicekit",
+    "swiftpkg_kingfisher",
 )
