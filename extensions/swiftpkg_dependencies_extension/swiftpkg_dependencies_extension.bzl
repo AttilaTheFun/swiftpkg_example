@@ -1,10 +1,10 @@
 """
-Defines the swiftpkg_dependency_extension module extension.
+Defines the swiftpkg_dependencies_extension module extension.
 """
 
 load("//rules/swiftpkg_dependency:swiftpkg_dependency.bzl", "swiftpkg_dependency")
 
-def _swiftpkg_dependency_extension_impl(module_ctx):
+def _swiftpkg_dependencies_extension_impl(module_ctx):
     for module in module_ctx.modules:
         for index_tag in module.tags.index:
             index_file = index_tag._index_file
@@ -22,6 +22,6 @@ _index_tag_class = tag_class(attrs = {
 })
 
 swiftpkg_dependencies_extension = module_extension(
-    implementation = _swiftpkg_dependency_extension_impl,
+    implementation = _swiftpkg_dependencies_extension_impl,
     tag_classes = {"index": _index_tag_class}
 )
