@@ -1,2 +1,5 @@
+# Bazel
+.bazel
+
 # Swift
 .build

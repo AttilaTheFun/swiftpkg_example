@@ -1,1 +1,5 @@
+# Use Bazelmod
 common --enable_bzlmod
+
+# Bazel Symlink Prefix
+build --symlink_prefix=.bazel/

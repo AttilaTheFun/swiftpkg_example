@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "resolve_swift_packages_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/attilathefun/swiftpkg_example/scripts/resolve_swift_packages",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "resolve_swift_packages",
+    embed = [":resolve_swift_packages_lib"],
+    visibility = ["//visibility:public"],
+)
