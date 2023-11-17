@@ -7,19 +7,27 @@ load("//rules/swiftpkg_dependency:swiftpkg_dependency.bzl", "swiftpkg_dependency
 
 def _swiftpkg_extension_impl(module_ctx):
     print("here1")
-    swiftpkg(name="swiftpkg")
+    ctx.path(Label("//:librarian.cmd"))
 
-    print("here2")
-    index_file = Label("@swiftpkg//:index.json")
-    index_string = module_ctx.read(index_file)
-    print(index_string)
-    index_json = json.decode(index_string)
-    for dependency in index_json["dependencies"]:
-        swiftpkg_dependency(
-            name="swiftpkg_" + dependency["identity"],
-            location=dependency["identity"],
-            revision=dependency["revision"]
-        )
+    result = module_ctx.execute([librarian, "select"] + books)
+    if result.return_code != 0:
+        fail(result.stderr)
+    resolved_book_list = json.decode(module_ctx.read("./booklist.json"))
+    
+    
+    # swiftpkg(name="swiftpkg")
+
+    # print("here2")
+    # index_file = Label("@swiftpkg//:index.json")
+    # index_string = module_ctx.read(index_file)
+    # print(index_string)
+    # index_json = json.decode(index_string)
+    # for dependency in index_json["dependencies"]:
+    #     swiftpkg_dependency(
+    #         name="swiftpkg_" + dependency["identity"],
+    #         location=dependency["identity"],
+    #         revision=dependency["revision"]
+    #     )
 
 _from_file_tag = tag_class(
     attrs = {
