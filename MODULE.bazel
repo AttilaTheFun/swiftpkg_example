@@ -26,20 +26,11 @@ swiftpkg_extension = use_extension(
     "//extensions/swiftpkg_extension:swiftpkg_extension.bzl",
     "swiftpkg_extension",
 )
+swiftpkg_extension.from_file(
+    package_swift = "//:Package.swift",
+)
 use_repo(
     swiftpkg_extension,
-    "swiftpkg",
     "swiftpkg_devicekit",
     "swiftpkg_kingfisher",
 )
-
-# swiftpkg_dependencies_extension = use_extension(
-#     "//extensions/swiftpkg_dependencies_extension:swiftpkg_dependencies_extension.bzl",
-#     "swiftpkg_dependencies_extension",
-# )
-# swiftpkg_dependencies_extension.index()
-# use_repo(
-#     swiftpkg_dependencies_extension,
-#     "swiftpkg_devicekit",
-#     "swiftpkg_kingfisher",
-# )
